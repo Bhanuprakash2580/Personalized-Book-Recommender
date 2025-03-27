@@ -33,14 +33,14 @@ https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset
 
 ## Installation
 1. Clone the repository:
-   ```sh
+   sh
    git clone https://github.com/Bhanuprakash2580/book-recommendation.git
 cd book-recommendation
-   ```
+   
 2. Install dependencies:
-   ```sh
+   sh
    pip install -r requirements.txt
-   ```
+   
 
 ## Usage
 1. Run the Jupyter Notebook to analyze the dataset and train the model.
