@@ -4,10 +4,13 @@ import pickle
 import numpy as np
 import pandas as pd
 import os
+import pickle
 
-with open(os.path.join(os.path.dirname("E:\PBRS\Personalized-Book-Recommender\books.pkl"), 'books.pkl'), 'rb') as f:
+file_path = r"E:\PBRS\Personalized-Book-Recommender\books.pkl"  # Use raw string to avoid escape character issues
+
+with open(file_path, 'rb') as f:
     books = pickle.load(f)
-
+file_path = os.path.join(os.getcwd(), "books.pkl")  # Adjust if needed
 
 # Set page configuration
 st.set_page_config(layout="wide")
