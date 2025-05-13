@@ -5,13 +5,17 @@ import numpy as np
 import pandas as pd
 import os
 
-# Define the absolute file paths
-books_file_path = r"E:\PBRS\Personalized-Book-Recommender\books.pkl"
-popular_file_path = r"E:\PBRS\Personalized-Book-Recommender\popular.pkl"
-pt_file_path = r"E:\PBRS\Personalized-Book-Recommender\pt.pkl"
-similarity_scores_path = r"E:\PBRS\Personalized-Book-Recommender\similarity_scores.pkl"
+# ✅ Set Streamlit page configuration (this MUST be the first Streamlit command)
+st.set_page_config(layout="wide")
 
-# Ensure the file exists before loading
+# ✅ Define the absolute file paths
+base_path = r"E:\PBRS\Personalized-Book-Recommender"
+books_file_path = os.path.join(base_path, "books.pkl")
+popular_file_path = os.path.join(base_path, "popular.pkl")
+pt_file_path = os.path.join(base_path, "pt.pkl")
+similarity_scores_path = os.path.join(base_path, "similarity_scores.pkl")
+
+# ✅ Function to load pickle files safely
 def load_pickle_file(file_path):
     if os.path.exists(file_path):
         with open(file_path, 'rb') as f:
@@ -20,31 +24,28 @@ def load_pickle_file(file_path):
         st.error(f"❌ File not found: {file_path}")
         return None
 
-# Load the required datasets
+# ✅ Load the required datasets
 books = load_pickle_file(books_file_path)
 popular = load_pickle_file(popular_file_path)
 pt = load_pickle_file(pt_file_path)
 similarity_scores = load_pickle_file(similarity_scores_path)
 
-# Set Streamlit page configuration
-st.set_page_config(layout="wide")
-
-# Initialize session state for login
+# ✅ Initialize session state for login
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# Login function
+# ✅ Login function
 def login(username, password):
     if username == "admin" and password == "password":
         st.session_state.logged_in = True
     else:
         st.error("❌ Invalid username or password")
 
-# Logout function
+# ✅ Logout function
 def logout():
     st.session_state.logged_in = False
 
-# Login form
+# ✅ Login form
 if not st.session_state.logged_in:
     st.title("🔐 Login")
     with st.form("login_form"):
@@ -54,7 +55,7 @@ if not st.session_state.logged_in:
         if submit:
             login(username, password)
 else:
-    # Main application content
+    # ✅ Main application content
     st.header("📚 Personalized Book Recommender System")
 
     st.markdown("""
@@ -62,11 +63,11 @@ else:
     ##### We recommend the **Top 50 Books** for general users as well.
     """)
 
-    # Add a logout button
+    # ✅ Add a logout button
     if st.sidebar.button("Logout"):
         logout()
 
-    # Top 50 Books Section
+    # ✅ Top 50 Books Section
     st.sidebar.title("🔥 Top 50 Books")
     if st.sidebar.button("SHOW"):
         cols_per_row = 5
@@ -81,7 +82,7 @@ else:
                         st.text(popular.iloc[book_idx]['Book-Title'])
                         st.text(popular.iloc[book_idx]['Book-Author'])
 
-    # Function to Recommend Books
+    # ✅ Function to Recommend Books
     def recommend(book_name):
         if pt is None or similarity_scores is None or books is None:
             return []
@@ -100,7 +101,7 @@ else:
             data.append(item)
         return data
 
-    # Dropdown to select books
+    # ✅ Dropdown to select books
     if pt is not None:
         book_list = pt.index.values
         st.sidebar.title("📖 Similar Book Suggestions")
@@ -116,10 +117,10 @@ else:
                         st.text(book_recommend[col_idx][0])
                         st.text(book_recommend[col_idx][1])
 
-    # Load book data
-    books_csv_path = r"E:\PBRS\Personalized-Book-Recommender\Data\Books.csv"
-    users_csv_path = r"E:\PBRS\Personalized-Book-Recommender\Data\Users.csv"
-    ratings_csv_path = r"E:\PBRS\Personalized-Book-Recommender\Data\Ratings.csv"
+    # ✅ Load book data safely
+    books_csv_path = os.path.join(base_path, "Data", "Books.csv")
+    users_csv_path = os.path.join(base_path, "Data", "Users.csv")
+    ratings_csv_path = os.path.join(base_path, "Data", "Ratings.csv")
 
     if os.path.exists(books_csv_path):
         books = pd.read_csv(books_csv_path)
@@ -128,7 +129,7 @@ else:
     if os.path.exists(ratings_csv_path):
         ratings = pd.read_csv(ratings_csv_path)
 
-    # Sidebar Data Preview
+    # ✅ Sidebar Data Preview
     st.sidebar.title("📊 Data Used")
     if st.sidebar.button("Show Data"):
         if books is not None:
@@ -141,6 +142,6 @@ else:
             st.subheader('User Information Data')
             st.dataframe(users)
 
-    # Footer
+    # ✅ Footer
     st.markdown("---")
     st.markdown("**Personalized Book Recommender System** | Built with ❤️ using Streamlit")
