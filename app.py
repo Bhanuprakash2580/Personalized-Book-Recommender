@@ -3,6 +3,10 @@ import streamlit as st
 import pickle
 import numpy as np
 import pandas as pd
+import os
+with open(os.path.join(os.path.dirname(books.pkl), 'books.pkl'), 'rb') as f:
+    books = pickle.load(f)
+
 
 # Set page configuration
 st.set_page_config(layout="wide")
