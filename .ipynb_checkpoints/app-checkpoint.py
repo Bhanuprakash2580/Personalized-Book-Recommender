@@ -98,9 +98,9 @@ else:
                     st.text(book_recommend[col_idx][1])
 
     # Import data
-    books = pd.read_csv("E:\PBRS\Data\Books.csv")  # books data
-    users = pd.read_csv("E:\\PBRS\\Data\\Users.csv") # Users location and age data
-    ratings = pd.read_csv("E:\PBRS\Data\Ratings.csv")  # Users rating data
+    books = pd.read_csv("E:\PBRS\Personalized-Book-Recommender\Data\Books.csv")  # books data
+    users = pd.read_csv("E:\\PBRS\\Personalized-Book-Recommender\\Data\\Users.csv") # Users location and age data
+    ratings = pd.read_csv("E:\PBRS\Personalized-Book-Recommender\Data\Ratings.csv")  # Users rating data
 
     st.sidebar.title("📊 Data Used")
 
