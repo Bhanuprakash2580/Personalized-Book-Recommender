@@ -47,15 +47,8 @@ else:
 
     # Import our models
     popular = pickle.load(open('popular.pkl', 'rb'))
-    books = pickle.load(open('data/books.pkl', 'rb'))
-    import os, pickle
+    books = pickle.load(open('books.pkl', 'rb'))
 
-try:
-    with open('books.pkl', 'rb') as f:
-        books = pickle.load(f)
-except FileNotFoundError:
-    st.error("📁 File 'books.pkl' not found. Please upload it or check your deployment.")
-    st.stop()
 
     pt = pickle.load(open('pt.pkl', 'rb'))
     similarity_scores = pickle.load(open('similarity_scores.pkl', 'rb'))
