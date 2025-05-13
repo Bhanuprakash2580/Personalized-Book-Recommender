@@ -1,11 +1,11 @@
-# Import the necessary libraries
+# Import necessary libraries
 import streamlit as st
 import pickle
 import numpy as np
 import pandas as pd
 import os
 
-# ✅ Set Streamlit page configuration (this MUST be the first Streamlit command)
+# ✅ Set Streamlit page configuration (must be the first Streamlit command)
 st.set_page_config(layout="wide")
 
 # ✅ Define the absolute file paths
@@ -15,7 +15,7 @@ popular_file_path = os.path.join(base_path, "popular.pkl")
 pt_file_path = os.path.join(base_path, "pt.pkl")
 similarity_scores_path = os.path.join(base_path, "similarity_scores.pkl")
 
-# ✅ Function to load pickle files safely
+# ✅ Function to check and load pickle files
 def load_pickle_file(file_path):
     if os.path.exists(file_path):
         with open(file_path, 'rb') as f:
@@ -24,7 +24,7 @@ def load_pickle_file(file_path):
         st.error(f"❌ File not found: {file_path}")
         return None
 
-# ✅ Load the required datasets
+# ✅ Load required datasets
 books = load_pickle_file(books_file_path)
 popular = load_pickle_file(popular_file_path)
 pt = load_pickle_file(pt_file_path)
@@ -55,7 +55,7 @@ if not st.session_state.logged_in:
         if submit:
             login(username, password)
 else:
-    # ✅ Main application content
+    # ✅ Main app content
     st.header("📚 Personalized Book Recommender System")
 
     st.markdown("""
@@ -63,11 +63,11 @@ else:
     ##### We recommend the **Top 50 Books** for general users as well.
     """)
 
-    # ✅ Add a logout button
+    # ✅ Logout button
     if st.sidebar.button("Logout"):
         logout()
 
-    # ✅ Top 50 Books Section
+    # ✅ Display Top 50 Books
     st.sidebar.title("🔥 Top 50 Books")
     if st.sidebar.button("SHOW"):
         cols_per_row = 5
