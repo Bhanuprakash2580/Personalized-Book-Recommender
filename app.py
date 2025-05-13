@@ -47,7 +47,8 @@ else:
 
     # Import our models
     popular = pickle.load(open('popular.pkl', 'rb'))
-    books = pickle.load(open('books.pkl', 'rb'))
+    books = pickle.load(open('data/books.pkl', 'rb'))
+
     pt = pickle.load(open('pt.pkl', 'rb'))
     similarity_scores = pickle.load(open('similarity_scores.pkl', 'rb'))
 
