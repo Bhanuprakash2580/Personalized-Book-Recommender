@@ -14,7 +14,7 @@ if "logged_in" not in st.session_state:
 # Login function
 def login(username, password):
     # Replace this with your actual authentication logic
-    if username == "admin" and password == "password":
+    if username == "bhanuprakash" and password == "29062001":
         st.session_state.logged_in = True
     else:
         st.error("Invalid username or password")
@@ -99,7 +99,7 @@ else:
 
     # Import data
     books = pd.read_csv("E:\PBRS\Personalized-Book-Recommender\Data\Books.csv")  # books data
-    users = pd.read_csv("E:\\PBRS\\Personalized-Book-Recommender\\Data\\Users.csv") # Users location and age data
+    users = pd.read_csv("E:\\PBRS\\Personalized-Book-Recommender\\Data\\Users.csv")# Users location and age data
     ratings = pd.read_csv("E:\PBRS\Personalized-Book-Recommender\Data\Ratings.csv")  # Users rating data
 
     st.sidebar.title("📊 Data Used")
